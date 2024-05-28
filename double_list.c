@@ -14,7 +14,7 @@ void init_list(DoubleList* list) {
  * En caso de que la lista estuviera vacia, este nuevo nodo es tambien el ultimo
  */
 void insert_at_beginning(DoubleList* list, int data) {
-    Node* new_node = (Node*)malloc(sizeof(Node));
+    Node* new_node = (Node*)malloc(sizeof(Node));  // Reserva memoria para el nuevo nodo
     new_node->data = data;
     new_node->next = list->head;
     new_node->prev = NULL;
@@ -22,7 +22,7 @@ void insert_at_beginning(DoubleList* list, int data) {
     if (list->head != NULL) {
         list->head->prev = new_node;
     } else {
-        list->tail = new_node;
+        list->tail = new_node;  // Si la lista estaba vacía, el nuevo nodo es también el último
     }
     list->head = new_node;
 }
@@ -100,13 +100,13 @@ void delete_by_value(DoubleList* list, int data) {
     }
 
     if (current == NULL) {
-        printf("El valor no fue encontrado\n");
+        printf("Valor no encontrado\n");
         return;
     }
 
     if (current->prev != NULL) {
         current->prev->next = current->next;
-    } else 
+    } else {
         list->head = current->next;
     }
 
